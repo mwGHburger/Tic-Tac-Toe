@@ -10,7 +10,7 @@ namespace Tic_Tac_Toe
         }
 
         // PROPERTIES
-        public string Name { get;  set; }
+        public string Name { get;  private set; }
         public string Marker{ get;  set;}
         public bool Turn {get; set;}
     }

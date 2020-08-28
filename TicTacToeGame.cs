@@ -4,32 +4,39 @@ using System.Collections.Generic;
 namespace Tic_Tac_Toe
 {
     public class TicTacToeGame
-    {
+    {   
+        // METHODS
         public static void Run()
         {
             Board board = new Board();
-            Player player1 = CreatePlayer("Player 1", "X", true);
-            Player player2 = CreatePlayer("Player 2", "O", false);
+            Player currentPlayer = CreatePlayer("Player 1", "X", true);
+            Player idlePlayer = CreatePlayer("Player 2", "O", false);
+            TicTacToeGame.PlayerList = new List<Player> {currentPlayer, idlePlayer};
+            winnerExists = false;
+            // Player currentPlayer = player1;
+            // Player idlePlayer = player2;
 
             DisplayText("Welcome to Tic Tac Toe!\n");
             DisplayText("Here's the current board:");
             board.DisplayBoard();
 
-            // return;
 
-            // while (noWinner == true)
-            // {
-            //     if(player1.Turn == true)
-            //     {
+            while (winnerExists == false)
+            {
+                System.Console.WriteLine($"Beginning turn of {currentPlayer.Name} with {currentPlayer.Marker}");
+                BeginTurnOf(TicTacToeGame.PlayerList[0], TicTacToeGame.PlayerList[1], board);
+                System.Console.WriteLine("\n");                
+                System.Console.WriteLine($"Current player is now {TicTacToeGame.PlayerList[0].Name}");
+                System.Console.WriteLine($"Idle player is now {TicTacToeGame.PlayerList[1].Name}");
+            }
 
-            //     }
-            //     else
-            //     {}
-            // }
+            System.Console.WriteLine("Ending...");
+        }
 
-            // PLAYER TURN 
+        private static void BeginTurnOf(Player currentPlayer, Player idlePlayer, Board board)
+        {
             // DISPLAY
-            DisplayText($"{player1.Name} enter a coord x,y to place your {player1.Marker} or enter 'q' to give up: ");
+            DisplayText($"{currentPlayer.Name} enter a coord x,y to place your {currentPlayer.Marker} or enter 'q' to give up: ");
             // INPUT
             string playerInput = Console.ReadLine();
             // ASSESS
@@ -55,7 +62,7 @@ namespace Tic_Tac_Toe
 
             System.Console.WriteLine($"Xcoordinate is {Xcoordinate}, Ycoordinate is {Ycoordinate}");
             
-            bool moveIsAccepted = board.AddToBoard(Xcoordinate, Ycoordinate, player1);
+            bool moveIsAccepted = board.AddToBoard(Xcoordinate, Ycoordinate, currentPlayer);
             if (moveIsAccepted)
             {
                 // CHECK IF WINNING MOVE
@@ -63,16 +70,28 @@ namespace Tic_Tac_Toe
                 {
                     System.Console.WriteLine("Move accepted, well done you've won the game!");
                     board.DisplayBoard();
+                    winnerExists = true;
                     return;
                 }
                 System.Console.WriteLine("Move accepted, here's the current board:");
                 board.DisplayBoard();
+                // SWITCH PLAYER TURN
+                System.Console.WriteLine("Switching turns\n");
+                SwitchTurns(currentPlayer, idlePlayer);
             }
             else
             {
                 System.Console.WriteLine("Oh no, a piece is already at this place! Try again...2");
             }
+        }
+
+        private static void SwitchTurns(Player currentPlayer, Player idlePlayer)
+        {
+            TicTacToeGame.PlayerList[0] = idlePlayer;
+            TicTacToeGame.PlayerList[1] = currentPlayer;
             
+            System.Console.WriteLine($"Current player is now {TicTacToeGame.PlayerList[0].Name} should now be player 2");
+            System.Console.WriteLine($"Idle player is now {TicTacToeGame.PlayerList[1].Name} should be player 1");
         }
 
         private static Board CreateBoard()
@@ -110,6 +129,10 @@ namespace Tic_Tac_Toe
                 return new List<int>();
             }
         }
+
+        // PROPERTIES
+        private static bool winnerExists;
+        private static List<Player> PlayerList;
 
     }
 }

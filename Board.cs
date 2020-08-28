@@ -34,17 +34,16 @@ namespace Tic_Tac_Toe
             }
         }
 
-        public bool AddToBoard(int xcoordinate, int ycoordinate, Player player)
+        public bool AddToBoard(int xcoordinate, int ycoordinate, Player currentPlayer)
         {
             if (CurrentState[xcoordinate - 1][ycoordinate - 1] == "*")
             {
                 // TODO: Determine the input
                 System.Console.WriteLine($"\nAdding to board: at {xcoordinate - 1}, {ycoordinate - 1}\n");
-                CurrentState[xcoordinate - 1][ycoordinate - 1] = "X";
+                CurrentState[xcoordinate - 1][ycoordinate - 1] = currentPlayer.Marker;
                 return true;
             }
             else{
-                // System.Console.WriteLine("Oh no, a piece is already at this place! Try again...1");
                 return false;
             }
             
