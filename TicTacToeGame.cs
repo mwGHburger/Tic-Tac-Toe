@@ -5,23 +5,24 @@ namespace Tic_Tac_Toe
     {
         public static void Run()
         {
-            // Create Board
-            // Create Players
-            Display("Welcome to Tic Tac Toe!\n");
-            Display("Here's the current board:");
+            Board board = new Board();
+            // TODO: Create Players
+            DisplayText("Welcome to Tic Tac Toe!\n");
+            DisplayText("Here's the current board:");
+            board.DisplayBoard();
         }
 
-        // private static Board CreateBoard()
-        // {
-        //     return new Board();
-        // }
+        private static Board CreateBoard()
+        {
+            return new Board();
+        }
 
         // private static Player CreatePlayer(string name)
         // {
         //     return new Player(name);
         // }
 
-        private static void Display(string text)
+        private static void DisplayText(string text)
         {
             Console.WriteLine(text);
         }
