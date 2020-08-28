@@ -34,9 +34,12 @@ namespace Tic_Tac_Toe
             }
         }
 
-        public void AddToBoard()
+        public void AddToBoard(int xcoordinate, int ycoordinate, Player player)
         {
             // TODO: Determine the input
+            System.Console.WriteLine("\nAdding to board:\n");
+            CurrentState[xcoordinate - 1][ycoordinate - 1] = "X";
+            System.Console.WriteLine($"{CurrentState[0][1]}"); 
         }
     }
 }
