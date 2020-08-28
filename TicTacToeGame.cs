@@ -8,12 +8,24 @@ namespace Tic_Tac_Toe
         public static void Run()
         {
             Board board = new Board();
-            Player player1 = CreatePlayer("Player 1", "X");
-            Player player2= CreatePlayer("Player 2", "O");
+            Player player1 = CreatePlayer("Player 1", "X", true);
+            Player player2 = CreatePlayer("Player 2", "O", false);
 
             DisplayText("Welcome to Tic Tac Toe!\n");
             DisplayText("Here's the current board:");
             board.DisplayBoard();
+
+            // return;
+
+            // while (noWinner == true)
+            // {
+            //     if(player1.Turn == true)
+            //     {
+
+            //     }
+            //     else
+            //     {}
+            // }
 
             // PLAYER TURN 
             // DISPLAY
@@ -33,14 +45,34 @@ namespace Tic_Tac_Toe
             
             if (coordinates.Count == 0)
             {
+                System.Console.WriteLine("Move not accepted!");
                 return;
             }
 
+            // CONTINUE
             int Xcoordinate = coordinates[0];
             int Ycoordinate = coordinates[1];
-            System.Console.WriteLine($"X coordinate is {Xcoordinate} and Y corrdinate is {Ycoordinate}.");
-            board.AddToBoard(Xcoordinate, Ycoordinate, player1);
-            board.DisplayBoard();
+
+            System.Console.WriteLine($"Xcoordinate is {Xcoordinate}, Ycoordinate is {Ycoordinate}");
+            
+            bool moveIsAccepted = board.AddToBoard(Xcoordinate, Ycoordinate, player1);
+            if (moveIsAccepted)
+            {
+                // CHECK IF WINNING MOVE
+                if(board.CheckForWinner())
+                {
+                    System.Console.WriteLine("Move accepted, well done you've won the game!");
+                    board.DisplayBoard();
+                    return;
+                }
+                System.Console.WriteLine("Move accepted, here's the current board:");
+                board.DisplayBoard();
+            }
+            else
+            {
+                System.Console.WriteLine("Oh no, a piece is already at this place! Try again...2");
+            }
+            
         }
 
         private static Board CreateBoard()
@@ -48,23 +80,15 @@ namespace Tic_Tac_Toe
             return new Board();
         }
 
-        private static Player CreatePlayer(string name, string marker)
+        private static Player CreatePlayer(string name, string marker, bool turn)
         {
-            return new Player(name, marker);
+            return new Player(name, marker, turn);
         }
 
         private static void DisplayText(string text)
         {
             Console.WriteLine(text);
         }
-
-        // private static void AssessInput(string text)
-        // {
-        //     if (text == "q")
-        //     {
-        //         System.Console.WriteLine("Player quit, gaming ending...");
-        //     }
-        // }
 
         private static List<int> FormatPlayerInput(string playerInput)
         {
@@ -76,17 +100,16 @@ namespace Tic_Tac_Toe
 
             if (xcoordinate > 0 && ycoordinate > 0 && xcoordinate < 4 && ycoordinate < 4)
             {
-                System.Console.WriteLine("Valid coordinates entered...");
                 return new List<int> { 
                     xcoordinate, 
-                    xcoordinate
+                    ycoordinate
                 };
             }
             else 
             {
-                System.Console.WriteLine("Invalid coordinates entered...");
                 return new List<int>();
             }
         }
+
     }
 }

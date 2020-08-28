@@ -9,8 +9,8 @@ namespace Tic_Tac_Toe
         {
             CurrentState = new List<List<string>> {
                 new List<string> {"*", "*", "*"},
-                new List<string> {"*", "*", "*"},
-                new List<string> {"*", "*", "*"}
+                new List<string> {"X", "*", "*"},
+                new List<string> {"X", "*", "*"}
             };
         }
 
@@ -34,12 +34,61 @@ namespace Tic_Tac_Toe
             }
         }
 
-        public void AddToBoard(int xcoordinate, int ycoordinate, Player player)
+        public bool AddToBoard(int xcoordinate, int ycoordinate, Player player)
         {
-            // TODO: Determine the input
-            System.Console.WriteLine("\nAdding to board:\n");
-            CurrentState[xcoordinate - 1][ycoordinate - 1] = "X";
-            System.Console.WriteLine($"{CurrentState[0][1]}"); 
+            if (CurrentState[xcoordinate - 1][ycoordinate - 1] == "*")
+            {
+                // TODO: Determine the input
+                System.Console.WriteLine($"\nAdding to board: at {xcoordinate - 1}, {ycoordinate - 1}\n");
+                CurrentState[xcoordinate - 1][ycoordinate - 1] = "X";
+                return true;
+            }
+            else{
+                // System.Console.WriteLine("Oh no, a piece is already at this place! Try again...1");
+                return false;
+            }
+            
+        }
+
+        public bool CheckForWinner()
+        {
+            // CHECK ROWS
+            if(CurrentState[0][0] == CurrentState[0][1] &&  CurrentState[0][1] == CurrentState[0][2] && CurrentState[0][0] != "*")
+            {
+                return true;
+            }
+            else if (CurrentState[1][0] == CurrentState[1][1] &&  CurrentState[1][1] == CurrentState[1][2] && CurrentState[1][1] != "*")
+            {
+                return true;
+            }
+            else if (CurrentState[2][0] == CurrentState[2][1] &&  CurrentState[2][1] == CurrentState[2][2] && CurrentState[2][0] != "*")
+            {
+                return true;
+            }
+            // CHECK COLUMNS
+            else if (CurrentState[0][0] == CurrentState[1][0] && CurrentState[1][0] == CurrentState[2][0] && CurrentState[0][0] != "*")
+            {
+                return true;
+            }
+            else if (CurrentState[0][1] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][1] && CurrentState[1][1] != "*")
+            {
+                return true;
+            }
+            else if (CurrentState[0][2] == CurrentState[1][2] && CurrentState[1][2] == CurrentState[2][2] && CurrentState[1][2] != "*")
+            {
+                return true;
+            }
+            // CHECK DIAGONALS
+            else if (CurrentState[0][0] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][2] && CurrentState[1][1] != "*")
+            {
+                return true;
+            }
+            else if (CurrentState[0][2] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][0] && CurrentState[1][1] != "*")
+            {
+                return true;
+            }
+            
+            return false;
         }
     }
 }
