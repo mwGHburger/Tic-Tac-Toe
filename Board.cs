@@ -39,7 +39,6 @@ namespace Tic_Tac_Toe
         {
             if (CurrentState[xcoordinate - 1][ycoordinate - 1] == "*")
             {
-                // TODO: Determine the input
                 CurrentState[xcoordinate - 1][ycoordinate - 1] = currentPlayer.Marker;
                 return true;
             }

@@ -19,7 +19,6 @@ namespace Tic_Tac_Toe
             DisplayText("Here's the current board:");
             board.DisplayBoard();
 
-
             while (winnerExists == false && turnCount < 9)
             {
                 BeginTurnOf(TicTacToeGame.PlayerList[0], TicTacToeGame.PlayerList[1], board);
@@ -107,9 +106,7 @@ namespace Tic_Tac_Toe
 
         private static List<int> FormatPlayerInput(string playerInput)
         {
-            // CONVERT TO STRING ARRAY
             string[] preformattedCoordinate =  playerInput.Split(",");
-            // REMOVE WHITESPACE AND CONVERT TO INT
             int xcoordinate = Convert.ToInt32(preformattedCoordinate[0].Trim('\r', '\n'));
             int ycoordinate = Convert.ToInt32(preformattedCoordinate[1].Trim('\r', '\n'));
 
