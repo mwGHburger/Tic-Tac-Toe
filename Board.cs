@@ -9,8 +9,8 @@ namespace Tic_Tac_Toe
         {
             CurrentState = new List<List<string>> {
                 new List<string> {"*", "*", "*"},
-                new List<string> {"X", "*", "*"},
-                new List<string> {"X", "*", "*"}
+                new List<string> {"*", "*", "*"},
+                new List<string> {"*", "*", "*"}
             };
         }
 
@@ -32,6 +32,7 @@ namespace Tic_Tac_Toe
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         public bool AddToBoard(int xcoordinate, int ycoordinate, Player currentPlayer)
@@ -39,7 +40,6 @@ namespace Tic_Tac_Toe
             if (CurrentState[xcoordinate - 1][ycoordinate - 1] == "*")
             {
                 // TODO: Determine the input
-                System.Console.WriteLine($"\nAdding to board: at {xcoordinate - 1}, {ycoordinate - 1}\n");
                 CurrentState[xcoordinate - 1][ycoordinate - 1] = currentPlayer.Marker;
                 return true;
             }

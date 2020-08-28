@@ -6,12 +6,10 @@ namespace Tic_Tac_Toe
         {
             this.Name = name;
             this.Marker = marker;
-            this.Turn = turn;
         }
 
         // PROPERTIES
         public string Name { get;  private set; }
         public string Marker{ get;  set;}
-        public bool Turn {get; set;}
     }
 }
