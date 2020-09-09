@@ -5,7 +5,6 @@ namespace Tic_Tac_Toe
 {
     public class TicTacToeGame
     {   
-        // METHODS
         public static void Run()
         {
             Board board = new Board();
@@ -31,56 +30,66 @@ namespace Tic_Tac_Toe
             var result = (winnerExists) ?
                 $"{TicTacToeGame.PlayerList[0].Name} is the winner!" :
                 "It is a tie!";
-            System.Console.WriteLine(result);
+            DisplayText(result);
         }
 
         private static void BeginTurnOf(Player currentPlayer, Player idlePlayer, Board board)
         {
             string playerInput = GetUserInput(currentPlayer);
 
-            
-            if (HasPlayerQuit(playerInput))
-            {
-                return;
-            }
+            if (HasPlayerQuit(playerInput, currentPlayer, idlePlayer)) return;
            
-            List<int> coordinates = FormatPlayerInput(playerInput);
-            if (coordinates.Count == 0)
+            Coordinates coordinates = ConvertPlayerInputIntoCoordinates(playerInput);
+
+            if (!coordinates.isValid)
             {
-                System.Console.WriteLine("Move not accepted!");
+                DisplayText("Move not accepted! Try again!");
                 return;
             }
-
-            int Xcoordinate = coordinates[0];
-            int Ycoordinate = coordinates[1];
             
-            bool moveIsAccepted = board.AddToBoard(Xcoordinate, Ycoordinate, currentPlayer);
-            if (moveIsAccepted)
+            if (IsMoveAccepted(coordinates.XCoordinate, coordinates.YCoordinate, board))
             {
-                if(board.CheckForWinner())
-                {
-                    System.Console.WriteLine("Move accepted, well done you've won the game!");
-                    board.DisplayBoard();
-                    winnerExists = true;
-                    return;
-                }
-                System.Console.WriteLine("Move accepted, here's the current board:");
-                turnCount++;
-                board.DisplayBoard();
-                SwitchTurns(currentPlayer, idlePlayer);
+                ExecuteMove(board, coordinates, currentPlayer, idlePlayer);
             }
             else
             {
-                System.Console.WriteLine("Oh no, a piece is already at this place! Try again...\n");
+                DisplayText("Oh no, a piece is already at this place! Try again...\n");
             }
         }
 
-        private static bool HasPlayerQuit(string playerInput)
+        private static void ExecuteMove(Board board, Coordinates coordinates, Player currentPlayer, Player idlePlayer)
+        {
+            board.AddToBoard(coordinates.XCoordinate, coordinates.YCoordinate, currentPlayer);
+            if(board.IsThereWinner())
+            {
+                DisplayText("Move accepted, well done you've won the game!");
+                board.DisplayBoard();
+                winnerExists = true;
+                return;
+            }
+            DisplayText("Move accepted, here's the current board:");
+            IncreaseTurnCount();
+            board.DisplayBoard();
+            SwitchTurns(currentPlayer, idlePlayer);
+        }
+
+        private static void IncreaseTurnCount()
+        {
+            turnCount++;
+        }
+
+        private static bool IsMoveAccepted(int Xcoordinate, int Ycoordinate, Board board)
+        {
+            return board.CurrentBoardState[Xcoordinate - 1][Ycoordinate - 1] == "*";
+        }
+
+        private static bool HasPlayerQuit(string playerInput, Player currentPlayer, Player idlePlayer)
         {
             if (playerInput.ToLower() == "q")
             {
-                System.Console.WriteLine("Player quit, gaming ending...");
+                DisplayText($"{currentPlayer.Name} quit, gaming ending...");
                 winnerExists = true;
+                SwitchTurns(currentPlayer, idlePlayer);
                 return winnerExists;
             }
             return winnerExists;
@@ -113,23 +122,20 @@ namespace Tic_Tac_Toe
             Console.WriteLine(text);
         }
 
-        private static List<int> FormatPlayerInput(string playerInput)
+        private static Coordinates ConvertPlayerInputIntoCoordinates(string playerInput)
         {
-            string[] preformattedCoordinate =  playerInput.Split(",");
-            int xcoordinate = Convert.ToInt32(preformattedCoordinate[0].Trim('\r', '\n'));
-            int ycoordinate = Convert.ToInt32(preformattedCoordinate[1].Trim('\r', '\n'));
-
-            if (xcoordinate > 0 && ycoordinate > 0 && xcoordinate < 4 && ycoordinate < 4)
+            try
             {
-                return new List<int> { 
-                    xcoordinate, 
-                    ycoordinate
-                };
+                string[] preformattedCoordinate =  playerInput.Split(",");
+                int xcoordinate = Convert.ToInt32(preformattedCoordinate[0].Trim('\r', '\n'));
+                int ycoordinate = Convert.ToInt32(preformattedCoordinate[1].Trim('\r', '\n'));
+                return new Coordinates(xcoordinate, ycoordinate);
             }
-            else 
+            catch(Exception exception)
             {
-                return new List<int>();
+                System.Console.WriteLine(exception.Message);
             }
+            return new Coordinates(-1, -1);
         }
 
         private static bool winnerExists;
