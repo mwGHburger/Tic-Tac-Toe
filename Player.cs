@@ -8,7 +8,6 @@ namespace Tic_Tac_Toe
             this.Marker = marker;
         }
 
-        // PROPERTIES
         public string Name { get;  private set; }
         public string Marker{ get;  set;}
     }

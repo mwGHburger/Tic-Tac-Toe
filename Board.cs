@@ -7,24 +7,22 @@ namespace Tic_Tac_Toe
     {
         public Board()
         {
-            CurrentState = new List<List<string>> {
+            CurrentBoardState = new List<List<string>> {
                 new List<string> {"*", "*", "*"},
                 new List<string> {"*", "*", "*"},
                 new List<string> {"*", "*", "*"}
             };
         }
 
-        // PROPERTIES
-        public List<List<string>> CurrentState
+        public List<List<string>> CurrentBoardState
         {
             get; set;
         }
 
-        // METHODS
         public void DisplayBoard()
         {
             Console.WriteLine();
-            foreach(List<string> row in this.CurrentState)
+            foreach(List<string> row in this.CurrentBoardState)
             {
                 foreach(string space in row)
                 {
@@ -35,53 +33,45 @@ namespace Tic_Tac_Toe
             Console.WriteLine();
         }
 
-        public bool AddToBoard(int xcoordinate, int ycoordinate, Player currentPlayer)
+        public void AddToBoard(int xcoordinate, int ycoordinate, Player currentPlayer)
         {
-            if (CurrentState[xcoordinate - 1][ycoordinate - 1] == "*")
-            {
-                CurrentState[xcoordinate - 1][ycoordinate - 1] = currentPlayer.Marker;
-                return true;
-            }
-            else{
-                return false;
-            }
-            
+            CurrentBoardState[xcoordinate - 1][ycoordinate - 1] = currentPlayer.Marker;
         }
 
-        public bool CheckForWinner()
+        public bool IsThereWinner()
         {
             // CHECK ROWS
-            if(CurrentState[0][0] == CurrentState[0][1] &&  CurrentState[0][1] == CurrentState[0][2] && CurrentState[0][0] != "*")
+            if(CurrentBoardState[0][0] == CurrentBoardState[0][1] &&  CurrentBoardState[0][1] == CurrentBoardState[0][2] && CurrentBoardState[0][0] != "*")
             {
                 return true;
             }
-            else if (CurrentState[1][0] == CurrentState[1][1] &&  CurrentState[1][1] == CurrentState[1][2] && CurrentState[1][1] != "*")
+            else if (CurrentBoardState[1][0] == CurrentBoardState[1][1] &&  CurrentBoardState[1][1] == CurrentBoardState[1][2] && CurrentBoardState[1][1] != "*")
             {
                 return true;
             }
-            else if (CurrentState[2][0] == CurrentState[2][1] &&  CurrentState[2][1] == CurrentState[2][2] && CurrentState[2][0] != "*")
+            else if (CurrentBoardState[2][0] == CurrentBoardState[2][1] &&  CurrentBoardState[2][1] == CurrentBoardState[2][2] && CurrentBoardState[2][0] != "*")
             {
                 return true;
             }
             // CHECK COLUMNS
-            else if (CurrentState[0][0] == CurrentState[1][0] && CurrentState[1][0] == CurrentState[2][0] && CurrentState[0][0] != "*")
+            else if (CurrentBoardState[0][0] == CurrentBoardState[1][0] && CurrentBoardState[1][0] == CurrentBoardState[2][0] && CurrentBoardState[0][0] != "*")
             {
                 return true;
             }
-            else if (CurrentState[0][1] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][1] && CurrentState[1][1] != "*")
+            else if (CurrentBoardState[0][1] == CurrentBoardState[1][1] && CurrentBoardState[1][1] == CurrentBoardState[2][1] && CurrentBoardState[1][1] != "*")
             {
                 return true;
             }
-            else if (CurrentState[0][2] == CurrentState[1][2] && CurrentState[1][2] == CurrentState[2][2] && CurrentState[1][2] != "*")
+            else if (CurrentBoardState[0][2] == CurrentBoardState[1][2] && CurrentBoardState[1][2] == CurrentBoardState[2][2] && CurrentBoardState[1][2] != "*")
             {
                 return true;
             }
             // CHECK DIAGONALS
-            else if (CurrentState[0][0] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][2] && CurrentState[1][1] != "*")
+            else if (CurrentBoardState[0][0] == CurrentBoardState[1][1] && CurrentBoardState[1][1] == CurrentBoardState[2][2] && CurrentBoardState[1][1] != "*")
             {
                 return true;
             }
-            else if (CurrentState[0][2] == CurrentState[1][1] && CurrentState[1][1] == CurrentState[2][0] && CurrentState[1][1] != "*")
+            else if (CurrentBoardState[0][2] == CurrentBoardState[1][1] && CurrentBoardState[1][1] == CurrentBoardState[2][0] && CurrentBoardState[1][1] != "*")
             {
                 return true;
             }
