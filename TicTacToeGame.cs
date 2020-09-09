@@ -15,11 +15,10 @@ namespace Tic_Tac_Toe
             winnerExists = false;
             turnCount = 0;
 
-            DisplayText("Welcome to Tic Tac Toe!\n");
-            DisplayText("Here's the current board:");
+            DisplayText("Welcome to Tic Tac Toe!\nHere's the current board:");
             board.DisplayBoard();
 
-            while (winnerExists == false && turnCount < 9)
+            while (!winnerExists && turnCount < 9)
             {
                 BeginTurnOf(TicTacToeGame.PlayerList[0], TicTacToeGame.PlayerList[1], board);
             }
@@ -29,29 +28,21 @@ namespace Tic_Tac_Toe
 
         private static void GenerateResults(bool winnerExists)
         {
-            if (winnerExists)
-            {
-                Console.WriteLine($"{TicTacToeGame.PlayerList[0].Name} is the winner!");
-            }
-            else
-            {
-                Console.WriteLine("It is a tie!");
-            }
+            var result = (winnerExists) ?
+                $"{TicTacToeGame.PlayerList[0].Name} is the winner!" :
+                "It is a tie!";
+            System.Console.WriteLine(result);
         }
 
         private static void BeginTurnOf(Player currentPlayer, Player idlePlayer, Board board)
         {
-            DisplayText($"{currentPlayer.Name} enter a coord x,y to place your {currentPlayer.Marker} or enter 'q' to give up: ");
+            string playerInput = GetUserInput(currentPlayer);
 
-            string playerInput = Console.ReadLine();
-
-            if (playerInput.ToLower() == "q")
+            
+            if (HasPlayerQuit(playerInput))
             {
-                System.Console.WriteLine("Player quit, gaming ending...");
                 return;
             }
-
-            // TODO: DOESN'T ACCOUNT FOR RANDOM INPUTS
            
             List<int> coordinates = FormatPlayerInput(playerInput);
             if (coordinates.Count == 0)
@@ -59,6 +50,7 @@ namespace Tic_Tac_Toe
                 System.Console.WriteLine("Move not accepted!");
                 return;
             }
+
             int Xcoordinate = coordinates[0];
             int Ycoordinate = coordinates[1];
             
@@ -81,6 +73,23 @@ namespace Tic_Tac_Toe
             {
                 System.Console.WriteLine("Oh no, a piece is already at this place! Try again...\n");
             }
+        }
+
+        private static bool HasPlayerQuit(string playerInput)
+        {
+            if (playerInput.ToLower() == "q")
+            {
+                System.Console.WriteLine("Player quit, gaming ending...");
+                winnerExists = true;
+                return winnerExists;
+            }
+            return winnerExists;
+        }
+
+        private static string GetUserInput(Player player)
+        {
+            DisplayText($"{player.Name} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
+            return Console.ReadLine();
         }
 
         private static void SwitchTurns(Player currentPlayer, Player idlePlayer)
@@ -123,7 +132,6 @@ namespace Tic_Tac_Toe
             }
         }
 
-        // PROPERTIES
         private static bool winnerExists;
         private static int turnCount;
         private static List<Player> PlayerList;
