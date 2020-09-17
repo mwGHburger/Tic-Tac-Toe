@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XPReQ+8rK3V5DArte0lcGzs5X0jk7QHG7z49cLIOrsbkSJWtDPWJI3Ej4UaCQ7RcRJFR0Qr2W1dRguMrDhWzOQ==",
+  "dgSpecHash": "hneWqH40zyDThrniAbZgEI6LtmatoXE9zx287QzujRimXNFsh7MzAzdMK3R9DB9Qm0nUkQZkWj+XR603i9Sdlw==",
   "success": true,
-  "projectFilePath": "/Users/Michael.Wang/Desktop/MYOB/Reference Kata/Foundational/Tic Tac Toe/Tic Tac Toe.csproj",
+  "projectFilePath": "/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/Tic Tac Toe.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
