@@ -10,3 +10,15 @@
 /Users/Michael.Wang/Desktop/MYOB/Reference Kata/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.dll
 /Users/Michael.Wang/Desktop/MYOB/Reference Kata/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.pdb
 /Users/Michael.Wang/Desktop/MYOB/Reference Kata/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.genruntimeconfig.cache
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/bin/Debug/netcoreapp3.1/Tic Tac Toe.deps.json
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/bin/Debug/netcoreapp3.1/Tic Tac Toe.runtimeconfig.json
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/bin/Debug/netcoreapp3.1/Tic Tac Toe.runtimeconfig.dev.json
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/bin/Debug/netcoreapp3.1/Tic Tac Toe.dll
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/bin/Debug/netcoreapp3.1/Tic Tac Toe.pdb
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.csprojAssemblyReference.cache
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.AssemblyInfoInputs.cache
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.AssemblyInfo.cs
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.csproj.CoreCompileInputs.cache
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.dll
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.pdb
+/Users/Michael.Wang/Desktop/MYOB/MYOB Katas/Foundational/Tic Tac Toe/obj/Debug/netcoreapp3.1/Tic Tac Toe.genruntimeconfig.cache
